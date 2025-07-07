@@ -1,0 +1,86 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/**
+* Library
+*/
+.library__container {
+  margin: 10px;
+  display: flex;
+  background-color: purple;
+  flex-wrap: wrap;
+}
+
+.library__container h1 {
+  color: white;
+  font-size: 2rem;
+  width: 100%;
+}
+
+.library__criteria ul {
+  display: flex;
+  gap: 8rem;
+  background-color: lightblue;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.library__criteria ul li {
+  font-size: 1.5rem;
+  list-style: none;
+}
+
+.library__add {
+  padding: 16px 10px;
+  border-radius: 8px;
+  background-color: burlywood;
+  cursor: pointer;
+}
+
+/**
+* Book
+*/
+.library__book {
+  background-color: white;
+  display: flex;
+  /* width: 300px;
+  height: 400px; */
+}
+
+/**
+* Modal
+*/
+.library__modal {
+  display: none;
+  margin: 0 auto;
+  background-color: rgb(195, 195, 255);
+  padding: 40px;
+  width: max-content;
+}
+
+.library__modal__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.library__modal__content input {
+  padding: 3px;
+  margin: 7px;
+}
+
+.library__modal__content button {
+  margin: 7px;
+}
+
+.modal__submit__add {
+  background-color: green;
+  cursor: pointer;
+}
+.modal__submit__cancel {
+  background-color: pink;
+  cursor: pointer;
+}

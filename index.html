@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Digital Library</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="library__container">
+    <h1>Digital Library</h1>
+    <div class="library__criteria">
+      <ul class="library__list">
+        <li>Book ID</li>
+        <li>Book Name</li>
+        <li>Book Author</li>
+        <li># Of Pages</li>
+        <li>Read</li>
+        <li>Delete</li>
+      </ul>
+      <main class="library__book"></main>
+      <button class="library__add">Add a Book</button>
+      <div class="library__modal">
+        <form class="library__modal__content">
+          <label for="modal__book">Book name</label>
+          <input
+            type="text"
+            id="modal__book"
+            name="book-name"
+            required
+          />
+          <label for="modal__author">Author name</label>
+          <input
+            type="text"
+            id="modal__author"
+            name="author-name"
+            required
+          />
+          <label for="modal__book__pages">Book Pages</label>
+          <input
+            type="number"
+            id="modal__book__pages"
+            name="book-pages"
+            required
+          />
+          <span>
+            <input
+              type="checkbox"
+              name=""
+              id="modal__book_read"
+              name="book-read"
+            />
+            <label for="modal__book__read"
+              >I read the book already</label
+            ></span
+          >
+          <button type="submit" class="modal__submit__add">
+            Add book
+          </button>
+          <button type="button" class="modal__submit__cancel">
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
