@@ -21,8 +21,13 @@
         <li>Delete</li>
       </ul>
       <main class="library__book"></main>
-      <button class="library__add">Add a Book</button>
-      <div class="library__modal">
+      <button
+        class="library__add"
+        onclick="library__modal.showModal()"
+      >
+        Add a Book
+      </button>
+      <dialog id="library__modal">
         <form class="library__modal__content">
           <label for="modal__book">Book name</label>
           <input
@@ -49,7 +54,7 @@
             <input
               type="checkbox"
               name=""
-              id="modal__book_read"
+              id="modal__book__read"
               name="book-read"
             />
             <label for="modal__book__read"
@@ -59,11 +64,15 @@
           <button type="submit" class="modal__submit__add">
             Add book
           </button>
-          <button type="button" class="modal__submit__cancel">
+          <button
+            type="button"
+            class="modal__submit__cancel"
+            onclick="library__modal.close()"
+          >
             Cancel
           </button>
         </form>
-      </div>
+      </dialog>
     </div>
   </body>
   <script src="index.js"></script>

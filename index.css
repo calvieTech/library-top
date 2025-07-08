@@ -9,24 +9,30 @@ body {
 * Library
 */
 .library__container {
-  margin: 10px;
+  margin: 0 auto;
   display: flex;
   background-color: purple;
   flex-wrap: wrap;
+  padding: 10px;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .library__container h1 {
   color: white;
   font-size: 2rem;
   width: 100%;
+  /* text-align: center; */
 }
 
-.library__criteria ul {
+.library__list {
   display: flex;
-  gap: 8rem;
   background-color: lightblue;
-  padding: 10px;
   border-radius: 6px;
+  padding: 18px;
+  gap: 8rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .library__criteria ul li {
@@ -47,16 +53,13 @@ body {
 .library__book {
   background-color: white;
   display: flex;
-  /* width: 300px;
-  height: 400px; */
 }
 
 /**
 * Modal
 */
 .library__modal {
-  display: none;
-  margin: 0 auto;
+  display: flex;
   background-color: rgb(195, 195, 255);
   padding: 40px;
   width: max-content;
@@ -74,6 +77,7 @@ body {
 
 .library__modal__content button {
   margin: 7px;
+  padding: 4px;
 }
 
 .modal__submit__add {

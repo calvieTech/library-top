@@ -1,30 +1,54 @@
+/**
+ * Library
+ */
 const myLibrary = [];
 
-const addABook = document.getElementsByClassName('library__add')[0];
-const libraryModal =
-  document.getElementsByClassName('library__modal')[0];
-const modalSubmitCancel = document.getElementsByClassName(
-  'modal__submit__cancel'
-)[0];
+function Book(name, author, numPages, read) {
+  if (!new.target) {
+    throw Error(
+      "You must use the 'new' operator to call the constructor"
+    );
+  }
 
+  this.id = crypto.randomUUID();
+  this.name = name;
+  this.author = author;
+  this.numPages = numPages;
+  this.read = read;
+}
+/**
+ * Add book to library
+ */
 const submitABook = document.getElementsByClassName(
   'modal__submit__add'
 )[0];
 
-addABook.addEventListener('click', (e) => {
-  libraryModal.style.display = 'block';
-});
+submitABook.addEventListener('click', addBookToLibrary);
 
-modalSubmitCancel.addEventListener('click', (e) => {
-  libraryModal.style.display = 'none';
-});
-
-submitABook.addEventListener('click', (e) => {
+function addBookToLibrary(e) {
   e.preventDefault();
-});
 
-function Book(id, name, author) {
-  this.id = id;
-  this.name = name;
-  this.author = author;
+  const bookNameValue = document.getElementById('modal__book')?.value;
+  const authorNameValue =
+    document.getElementById('modal__author')?.value;
+  const bookPagesValue = document.getElementById(
+    'modal__book__pages'
+  )?.value;
+  const bookReadValue = document.getElementById(
+    'modal__book__read'
+  )?.value;
+
+  let newBook = new Book(
+    bookNameValue,
+    authorNameValue,
+    bookPagesValue,
+    bookReadValue
+  );
+  myLibrary.push(newBook);
+
+  console.log(myLibrary);
+
+  // console.log(bookNameValue);
+  // console.log(authorNameValue);
+  // console.log(bookReadValue);
 }
