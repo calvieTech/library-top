@@ -3,60 +3,163 @@ body {
   margin: 0px;
   font-size: 16px;
   box-sizing: border-box;
+  background-color: #023047;
+  overflow-x: hidden;
 }
 
 /**
-* Library
+* Library Nav
 */
-.library__container {
-  margin: 0 auto;
+.library__nav {
+  /* position: absolute; */
   display: flex;
-  background-color: purple;
-  flex-wrap: wrap;
-  padding: 10px;
-  /* justify-content: center;
-  align-items: center; */
-}
-
-.library__container h1 {
-  color: white;
-  font-size: 2rem;
-  width: 100%;
-  /* text-align: center; */
-}
-
-.library__list {
-  display: flex;
-  background-color: lightblue;
-  border-radius: 6px;
-  padding: 18px;
-  gap: 8rem;
-  justify-content: center;
+  background-color: transparent;
+  justify-content: space-around;
   align-items: center;
-}
-
-.library__criteria ul li {
-  font-size: 1.5rem;
-  list-style: none;
+  background-color: #8ecae6;
+  box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.24);
+  width: 100vw;
+  height: 70px;
 }
 
 .library__add {
-  padding: 16px 10px;
-  border-radius: 8px;
-  background-color: burlywood;
+  background-color: #fb8600;
+  border-radius: 2px;
+  border: 1px solid #000000;
+  display: inline-block;
   cursor: pointer;
+  color: #ffffff;
+  font-family: Verdana;
+  font-size: 16px;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #023047;
+}
+
+.library__add:hover {
+  background-color: #ffb703;
 }
 
 /**
-* Book
+* Library Collection
 */
-.library__book {
-  background-color: white;
-  display: flex;
+#library__collection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 6px;
+  padding: 1rem;
+  height: calc(100vh - 70px - 90px);
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+@media (max-width: 900px) {
+  #library__collection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  #library__collection {
+    grid-template-columns: 1fr;
+  }
 }
 
 /**
-* Modal
+* Library Card
+*/
+.library__card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.library__card > h2 {
+  font-size: 1.6rem;
+  text-align: center;
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.library__card > h3 {
+  margin: 2px;
+  display: block;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.library__card > p {
+  margin-top: 2px;
+  font-weight: bold;
+  display: block;
+  /* font-size: 1rem; */
+  text-align: center;
+  padding: 4px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid black;
+}
+
+.library__card__buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.library__card__delete {
+  background-color: #fb8600;
+  border-radius: 24px;
+  border: 1px solid #023047;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Georgia;
+  font-size: 16px;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.library__card__delete:hover {
+  background-color: #ffb803;
+}
+
+.library__card__delete:active {
+  position: relative;
+  top: 1px;
+}
+
+.library__card__toggle__read {
+  background-color: #8ecae6;
+  border-radius: 24px;
+  border: 1px solid #023047;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Georgia;
+  font-size: 16px;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.library__card__toggle__read:hover {
+  background-color: #219dbc;
+}
+
+.library__card__toggle__read:active {
+  position: relative;
+  top: 1px;
+}
+
+/**
+* Library Modal
 */
 .library__modal {
   display: flex;
@@ -87,4 +190,17 @@ body {
 .modal__submit__cancel {
   background-color: pink;
   cursor: pointer;
+}
+
+/**
+* Library Footer
+*/
+.library__footer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #219ebc;
+  /* background-color: red; */
+  height: 90px;
 }
