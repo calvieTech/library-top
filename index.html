@@ -19,28 +19,7 @@
         Add Book
       </button>
     </nav>
-    <main id="library__collection">
-      <!-- <div class="library__card">
-        <h2>Book Title</h2>
-        <h3>By Author</h3>
-        <p>Pages: 6969</p>
-        <h2>In Progress!</h2>
-        <div class="library__card__buttons">
-          <button class="library__card__toggle__read">
-            Toggle Read
-          </button>
-          <button class="library__card__delete">Delete?</button>
-        </div>
-      </div>
-      <div class="library__card">Card One</div>
-      <div class="library__card">Card One</div>
-      <div class="library__card">Card One</div>
-      <div class="library__card">Card One</div>
-      <div class="library__card">Card One</div>
-      <div class="library__card">Card One</div>
-      <div class="library__card">Card One</div>
-      <div class="library__card">Card One</div> -->
-    </main>
+    <main id="library__collection"></main>
     <dialog id="library__modal">
       <form class="library__modal__content">
         <label for="modal__book">Book name</label>
@@ -62,14 +41,15 @@
           type="number"
           id="modal__book__pages"
           name="book-pages"
+          value="book-pages"
           required
         />
         <span>
           <input
             type="checkbox"
-            name=""
             id="modal__book__read"
-            name="book-read"
+            name="read"
+            value="read"
           />
           <label for="modal__book__read"
             >I read the book already</label

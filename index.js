@@ -3,24 +3,28 @@
  */
 const myLibrary = [
   {
+    id: crypto.randomUUID(),
     name: 'Don Quixote',
     author: 'Miguel de Cervantes',
     pages: 992,
     reading: true,
   },
   {
+    id: crypto.randomUUID(),
     name: 'The Adventures of Tom Sawyer',
     author: 'Mark Twain',
     pages: 224,
     reading: false,
   },
   {
+    id: crypto.randomUUID(),
     name: 'Alices Adventures in Wonderland',
     author: 'Lewis Carroll',
     pages: 192,
     reading: false,
   },
   {
+    id: crypto.randomUUID(),
     name: 'Treasure Island',
     author: 'Robert Louis Stevenson',
     pages: 273,
@@ -28,54 +32,98 @@ const myLibrary = [
   },
 ];
 
-window.addEventListener('load', (event) => {
-  const libraryCollection = document.getElementById(
-    'library__collection'
-  );
+/*
+ * Do this first when loading
+ */
+window.addEventListener('load', renderToHTML);
 
-  myLibrary.map((book) => {
-    console.log(`book ${book.name}`);
+/**
+ * Render to HTML
+ */
+function renderToHTML() {
+  {
+    const libraryCollection = document.getElementById(
+      'library__collection'
+    );
 
-    const libraryCard = document.createElement('div');
+    // clear previous content
+    libraryCollection.innerHTML = '';
 
-    const bookTitle = document.createElement('h2');
-    const bookAuthor = document.createElement('h3');
-    const bookPages = document.createElement('p');
-    const bookProgress = document.createElement('h2');
+    myLibrary.forEach((book) => {
+      const libraryCard = document.createElement('div');
 
-    libraryCard.className = 'library__card';
-    bookTitle.innerHTML = `${book.name}`;
-    bookAuthor.innerHTML = `By ${book.author}`;
-    bookPages.innerHTML = `Total Pages: ${book.pages}`;
+      libraryCard.dataset.id = book.id;
 
-    if (book.reading) {
-      bookProgress.innerHTML = `In Progress...`;
-    } else {
-      bookProgress.innerHTML = `Not read yet!`;
-    }
+      const bookTitle = document.createElement('h2');
+      const bookAuthor = document.createElement('h3');
+      const bookPages = document.createElement('p');
+      const bookProgress = document.createElement('h2');
 
-    const libraryCardButtons = document.createElement('div');
-    libraryCardButtons.className = 'library__card__buttons';
-    const readBtn = document.createElement('button');
-    readBtn.className = 'library__card__toggle__read';
-    readBtn.innerHTML = 'Toggle Read';
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'library__card__delete';
-    deleteBtn.innerHTML = 'Delete?';
+      libraryCard.className = 'library__card';
+      bookTitle.innerHTML = `${book.name}`;
+      bookAuthor.innerHTML = `By ${book.author}`;
+      bookPages.innerHTML = `Total Pages: ${book.pages}`;
 
-    libraryCard.append(bookTitle);
-    libraryCard.append(bookAuthor);
-    libraryCard.append(bookPages);
-    libraryCard.append(bookProgress);
+      if (book.reading) {
+        bookProgress.innerHTML = `In Progress...`;
+      } else {
+        bookProgress.innerHTML = `Not read yet!`;
+      }
 
-    libraryCardButtons.append(readBtn);
-    libraryCardButtons.append(deleteBtn);
+      const libraryCardButtons = document.createElement('div');
+      libraryCardButtons.className = 'library__card__buttons';
 
-    libraryCard.append(libraryCardButtons);
+      const readBtn = document.createElement('button');
+      readBtn.setAttribute('data-id', book.id);
+      readBtn.className = 'library__card__toggle__read';
+      readBtn.innerHTML = 'Toggle Read';
+      readBtn.addEventListener('click', () => toggleRead(book.id));
 
-    libraryCollection?.append(libraryCard);
-  });
-});
+      const deleteBtn = document.createElement('button');
+      deleteBtn.setAttribute('data-id', book.id);
+      deleteBtn.className = 'library__card__delete';
+      deleteBtn.innerHTML = 'Delete?';
+      deleteBtn.addEventListener('click', () => deleteBook(book.id));
+
+      libraryCard.append(bookTitle);
+      libraryCard.append(bookAuthor);
+      libraryCard.append(bookPages);
+      libraryCard.append(bookProgress);
+
+      libraryCardButtons.append(readBtn);
+      libraryCardButtons.append(deleteBtn);
+
+      libraryCard.append(libraryCardButtons);
+
+      libraryCollection?.append(libraryCard);
+    });
+  }
+}
+
+/**
+ * Removes the book from the array
+ *
+ */
+function deleteBook(bookId) {
+  const bookIndex = myLibrary.findIndex((book) => book.id === bookId);
+
+  if (bookIndex !== -1) {
+    myLibrary.splice(bookIndex, 1);
+    renderToHTML();
+  }
+}
+
+/**
+ * Toggle Read Fc for Book
+ */
+function toggleRead(bookId) {
+  const foundBook = myLibrary.find((book) => book.id === bookId);
+
+  if (foundBook) {
+    foundBook.reading = !foundBook.reading;
+    renderToHTML();
+  }
+}
 
 /**
  * Constructor fc for Book
@@ -83,9 +131,9 @@ window.addEventListener('load', (event) => {
  * @param {*} name
  * @param {*} author
  * @param {*} numPages
- * @param {*} read
+ * @param {*} reading
  */
-function Book(name, author, numPages, read) {
+function Book(name, author, pages, reading) {
   if (!new.target) {
     throw Error(
       "You must use the 'new' operator to call the constructor"
@@ -95,8 +143,8 @@ function Book(name, author, numPages, read) {
   this.id = crypto.randomUUID();
   this.name = name;
   this.author = author;
-  this.numPages = numPages;
-  this.read = read;
+  this.pages = pages;
+  this.reading = reading;
 }
 
 /**
@@ -119,12 +167,13 @@ function addBookToLibrary(e) {
   const bookNameValue = document.getElementById('modal__book')?.value;
   const authorNameValue =
     document.getElementById('modal__author')?.value;
-  const bookPagesValue = document.getElementById(
-    'modal__book__pages'
-  )?.value;
+  const bookPagesValue = parseInt(
+    document.getElementById('modal__book__pages')?.value
+  );
+
   const bookReadValue = document.getElementById(
     'modal__book__read'
-  )?.value;
+  )?.checked;
 
   let newBook = new Book(
     bookNameValue,
@@ -134,28 +183,7 @@ function addBookToLibrary(e) {
   );
 
   myLibrary.push(newBook);
-  renderLibrary();
-}
+  console.log(myLibrary);
 
-/**
- * Render library to HTML
- *
- */
-function renderLibrary() {
-  const mainBook =
-    document.getElementsByClassName('library__book')[0];
-
-  const unorderedList = document.createElement('ul');
-  const liTag = document.createElement('li');
-
-  const bookDescriptions = [
-    'Book ID',
-    'Book Name',
-    'Book Author',
-    '# of Pages',
-    'Read',
-    'Delete',
-  ];
-
-  console.log(liTag);
+  renderToHTML();
 }
