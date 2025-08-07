@@ -38,6 +38,23 @@ const myLibrary = [
 window.addEventListener('load', renderToHTML);
 
 /**
+ * Class for Book
+ *
+ * @param {*} name
+ * @param {*} author
+ * @param {*} numPages
+ * @param {*} reading
+ */
+class Book {
+  constructor(name, author, numPages, reading) {
+    this.name = name;
+    this.author = author;
+    this.numPages = numPages;
+    this.reading = reading;
+  }
+}
+
+/**
  * Render to HTML
  */
 function renderToHTML() {
@@ -123,28 +140,6 @@ function toggleRead(bookId) {
     foundBook.reading = !foundBook.reading;
     renderToHTML();
   }
-}
-
-/**
- * Constructor fc for Book
- *
- * @param {*} name
- * @param {*} author
- * @param {*} numPages
- * @param {*} reading
- */
-function Book(name, author, pages, reading) {
-  if (!new.target) {
-    throw Error(
-      "You must use the 'new' operator to call the constructor"
-    );
-  }
-
-  this.id = crypto.randomUUID();
-  this.name = name;
-  this.author = author;
-  this.pages = pages;
-  this.reading = reading;
 }
 
 /**
